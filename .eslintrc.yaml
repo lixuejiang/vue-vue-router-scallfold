@@ -1,0 +1,56 @@
+---
+# Eslint configure #############################################################
+################################################################################
+# http://eslint.org/docs/user-guide/configuring
+# YAML javascript 语法： http://nodeca.github.io/js-yaml/
+# https://github.com/airbnb/javascript
+
+parser: 'babel-eslint'
+extends: 'airbnb-base' # 扩展
+plugins:
+  - 'html'
+settings:
+  'import/resolver': 'webpack'
+env:
+  commonjs: true
+  browser: true
+globals:
+  DEBUG: true
+  BASEURL: true
+
+# # http://eslint.org/docs/rules/
+# ESLint comes with a large number of rules. You can modify which rules your project uses either using configuration comments or configuration files. To change a rule setting, you must set the rule ID equal to one of these values:
+# 0 - turn the rule off
+# 1 - turn the rule on as a warning (doesn't affect exit code)
+# 2 - turn the rule on as an error (exit code is 1 when triggered)
+rules:
+  no-case-declarations: 'off'
+  no-bitwise: 'off'
+  no-underscore-dangle: 'off'
+  no-restricted-syntax: 'off'
+  no-prototype-builtins: 'off'
+  new-cap: 'off'
+  no-param-reassign: 'off'
+  no-console: 'off' # 开启console
+  no-plusplus: 'off' # 开启++ --
+  one-var: 'off' # 函数内只能有一个var
+  one-var-declaration-per-line: 'off'
+  global-require: 'off'
+  semi: # 不允许使用分号
+    - 'error'
+    - 'never'
+  no-unused-expressions:
+    - 'error'
+    - allowShortCircuit: true
+  import/no-unresolved:
+    - 'error'
+    - commonjs: true
+      ignore:
+        - '^local-.*' # 本地文件，webpack已做别名处理
+        - '^dir-.*/' # 本地目录, webpack已做别名处理
+  import/no-extraneous-dependencies:
+    - 'off'
+    - devDependencies: true
+      optionalDependencies: false
+  import/extensions: 'off'
+  import/no-dynamic-require: 'off'
